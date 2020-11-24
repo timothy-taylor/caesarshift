@@ -6,6 +6,14 @@ class CaesarShift
     @key = key
   end
 
+  def enter_the_cipher
+    print "Enter a word to encode: "
+    @word = gets
+    print "Enter a number to act as a key: "
+    @key = gets[0].to_i
+    puts caesar_cipher
+  end
+
   def caesar_cipher(string = @word, shift = @key)
     word_array = string.split('')
     shifted_array = word_array.map{ |letter| char_shift(letter, shift) }
@@ -29,13 +37,8 @@ class CaesarShift
       new_code = wrapping_utility(char_code,shift)
       new_character = new_code.chr
     else
+      # this returns punctuations, spaces, etc
       return char
     end
   end 
 end
-
-#puts "Enter a phrase to encrypt"
-#word = CaesarShift.new(gets)
-#puts "Please enter a number as the key"
-#word.key = gets.to_i
-#print encrypted = word.caesar_cipher
